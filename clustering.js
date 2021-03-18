@@ -33,13 +33,13 @@ exports.setup = function () {
     clearTimeout(timeouts[worker.id]);
     // Don't try to restart the workers when disconnect or destroy has been called
     if (worker.suicide !== true) {
-      console.warning('Worker #' + worker.id + ' did not commit suicide, restarting');
+      console.log('Worker #' + worker.id + ' did not commit suicide, restarting');
       cluster.fork();
     }
   });
 
   cluster.on('disconnect', function onClusterDisconnect(worker) {
-    console.warning('The worker #' + worker.id + ' has disconnected');
+    console.log('The worker #' + worker.id + ' has disconnected');
   });
 
   // Trick suggested by Ian Young (https://github.com/isaacs/node-supervisor/issues/40#issuecomment-4330946)
